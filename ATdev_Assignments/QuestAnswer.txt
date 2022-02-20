@@ -1,0 +1,11 @@
+Q1:India is in which continent?
+
+A1:India is in Asia
+
+Q2:What is capital of India?
+
+A2:Delhi is capital of India.
+
+Q3:How many states does India have?
+
+A3:India has 29 states.

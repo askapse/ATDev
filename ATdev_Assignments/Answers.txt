@@ -1,0 +1,3 @@
+A1:India is in Asia
+A2:Delhi is capital of India.
+A3:India has 29 states.
