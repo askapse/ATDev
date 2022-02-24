@@ -22,12 +22,12 @@ public class Accountant {
 			st = con.createStatement();
 			int i = st.executeUpdate(
 					"create table accountant(id int not null auto_increment,name varchar(50),email varchar(100),password varchar(30) , primary key(id))");
+			st.close();
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
 		}
-
 	}
 
 	public boolean insertAccountant(Ac ac) {
@@ -41,6 +41,7 @@ public class Accountant {
 			if (pr.executeUpdate() > 0)
 				return true;
 
+			pr.close();
 			return false;
 
 		} catch (SQLException e) {
@@ -52,31 +53,33 @@ public class Accountant {
 	public void display() {
 		try {
 			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select *from accountant");
 
+			ResultSet rs = st.executeQuery("select *from accountant");
 			while (rs.next()) {
 				System.out.printf("%-3d %-30s %-50s %-30s\n", rs.getInt(1), rs.getString(2), rs.getString(3),
 						rs.getString(4));
 			}
 
+			st.close();
+			rs.close();
 		} catch (SQLException e) {
 			System.out.println("Error while retriving records....");
 		}
 	}
 
-	
 	public boolean delete(int id) {
 		try {
 			PreparedStatement pr = con.prepareStatement("delete from accountant where id=?");
 			pr.setInt(1, id);
-			
-			if(pr.executeUpdate() > 0)
+
+			if (pr.executeUpdate() > 0)
 				return true;
 			return false;
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			return false;
 		}
 	}
+
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		Accountant ac = new Accountant();
 
@@ -86,9 +89,9 @@ public class Accountant {
 		System.out.println(
 				"Insert record : " + ac.insertAccountant(new Ac(2, "Datta Jadhav", "djadhav@gmail.com", "datta6001")));
 		ac.display();
-		
-		System.out.println("\nDelete record : "+ac.delete(2));
-		
+
+		System.out.println("\nDelete record : " + ac.delete(2));
+
 		ac.display();
 
 	}
