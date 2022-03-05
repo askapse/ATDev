@@ -4,6 +4,7 @@ const msg = document.getElementById("msg");
 const mode = document.getElementsByClassName("md");
 
 function load(){
+  msg.innerHTML = "";
   let cont = document.getElementById("container");
   cont.innerHTML = "";
   for(let i of items){
